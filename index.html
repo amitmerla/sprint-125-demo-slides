@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sprint 125 · Transformers Squad</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff3d9a'/%3E%3Cstop offset='1' stop-color='%23ffb547'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='4' y='4' width='56' height='56' rx='14' fill='none' stroke='url(%23g)' stroke-width='4'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Impact,Helvetica' font-weight='900' font-size='24' fill='url(%23g)'%3E125%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="palm" viewBox="-130 -300 260 310">
+        <path d="M-4 8 C 4 -60, -10 -150, 8 -240" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" />
+        <g transform="translate(8 -240)" fill="currentColor">
+          <path d="M0 0 C 30 -34, 86 -40, 124 -8 C 84 -22, 40 -16, 0 0Z" />
+          <path d="M0 0 C 40 -6, 92 14, 116 56 C 84 24, 42 12, 0 0Z" />
+          <path d="M0 0 C -30 -34, -86 -40, -124 -8 C -84 -22, -40 -16, 0 0Z" />
+          <path d="M0 0 C -40 -6, -92 14, -116 56 C -84 24, -42 12, 0 0Z" />
+          <path d="M0 0 C 6 -40, 30 -72, 64 -84 C 36 -64, 18 -36, 0 0Z" />
+          <path d="M0 0 C -6 -40, -30 -72, -64 -84 C -36 -64, -18 -36, 0 0Z" />
+          <path d="M0 0 C 18 18, 30 54, 26 88 C 18 54, 8 28, 0 0Z" />
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <canvas id="dust" aria-hidden="true"></canvas>
+  <div class="spotlight" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ INTRO · key-art collage ============ -->
+  <section id="intro" class="intro" aria-label="Intro">
+    <div class="collage" aria-hidden="true">
+      <div class="collage__grid">
+        <div class="pc pc--city" style="--i:0"></div>
+        <div class="pc pc--sunset" style="--i:1"><svg class="p1"><use href="#palm" /></svg><svg class="p2"><use href="#palm" /></svg></div>
+        <div class="pc pc--phone pc--tall" style="--i:2"><div class="clip"></div><svg class="p1"><use href="#palm" /></svg><span class="live-pill">LIVE</span><div class="hearts"><i>♥</i>12.5K</div><p class="ui"><b>@leonida.now</b><span>checkout run, caught on replay 🎥</span></p></div>
+        <div class="pc pc--motel" style="--i:3"><p class="neon neon--pink">MOTEL</p><p class="neon neon--teal">VACANCY</p></div>
+        <div class="pc pc--pool" style="--i:4"><i class="ring"></i></div>
+        <div class="pc pc--road" style="--i:5"><svg class="p1"><use href="#palm" /></svg><svg class="p2"><use href="#palm" /></svg></div>
+        <div class="pc pc--night" style="--i:6"></div>
+        <div class="pc pc--palm pc--tall" style="--i:7"><svg class="p1"><use href="#palm" /></svg></div>
+        <div class="pc pc--sunset" style="--i:8"><svg class="p1"><use href="#palm" /></svg></div>
+        <div class="pc pc--city" style="--i:9"></div>
+        <div class="pc pc--pool" style="--i:10"><i class="ring"></i></div>
+        <div class="pc pc--night" style="--i:11"></div>
+        <div class="pc pc--road" style="--i:12"><svg class="p2"><use href="#palm" /></svg></div>
+        <div class="pc pc--motel" style="--i:13"><p class="neon neon--pink">OPEN</p><p class="neon neon--teal">24 HRS</p></div>
+      </div>
+    </div>
+    <div class="intro__shade" aria-hidden="true"></div>
+    <div class="intro__stack">
+      <p class="intro__line l1">Glassbox R&amp;D presents</p>
+      <p class="intro__line l2">A Transformers Squad production</p>
+      <h1 class="intro__title">
+        <span class="intro__sprint">Sprint</span>
+        <span class="logo"><span class="logo__num">125</span></span>
+      </h1>
+      <p class="intro__line l3">The Leonida Edition</p>
+      <div class="intro__ctas">
+        <button class="cta" id="startBtn">
+          <span>Start mission</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </button>
+        <button class="cta cta--ghost" id="tourIntroBtn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
+          <span>Tour with Claudine</span>
+        </button>
+      </div>
+    </div>
+    <!-- own track? add data-src="audio/your-track.mp3" (a file you have the rights to) -->
+    <button class="sound" id="soundBtn" data-src="" aria-pressed="false" aria-label="Toggle opening music">
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="sound__label">Sound off</span>
+    </button>
+    <p class="intro__tip">Tip · <b>M</b> music, <b>T</b> narrated tour, <b>F</b> fullscreen</p>
+    <div class="intro__flash" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ CHROME ============ -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">Glassbox R&amp;D</span>
+      <span class="brand__sep">/</span>
+      <span class="brand__squad">Transformers Squad</span>
+    </div>
+    <div class="topbar__right">
+      <div class="wanted" id="wanted" aria-label="Progress"></div>
+      <button class="pill pill--tour" id="tourBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>Tour with Claudine
+      </button>
+      <span class="pill pill--ghost">GTA VI theme</span>
+      <span class="pill">Sprint 125</span>
+    </div>
+  </header>
+
+  <main class="deck" id="deck">
+    <!-- ============ SLIDE · SHOPIFY ============ -->
+    <section class="slide" data-title="Shopify" data-hook="heist">
+      <div class="slide__bgnum" aria-hidden="true">01</div>
+      <div class="slide__grid">
+        <div class="copy">
+          <p class="kicker reveal" style="--d:0">Mission 01 <i></i> Shopify</p>
+          <h2 class="headline reveal" style="--d:1">Every store.<br /><span class="shine">Even the vault.</span></h2>
+          <p class="lede reveal" style="--d:2">
+            Glassbox now <b>fully supports recording Shopify stores</b> — from the storefront
+            all the way through the <b>secured checkout page</b>, the one place that used to
+            stay dark. The whole journey, captured end to end.
+          </p>
+          <div class="chips reveal" style="--d:3">
+            <span class="chip"><i class="dot dot--teal"></i>Storefront</span>
+            <span class="chip"><i class="dot dot--orange"></i>Cart</span>
+            <span class="chip chip--hot"><i class="dot dot--pink"></i>Secured checkout</span>
+            <span class="chip"><i class="dot dot--sun"></i>Full-journey replay</span>
+          </div>
+          <div class="heroes reveal" style="--d:4">
+            <div class="heroes__avatars">
+              <span class="avatar avatar--photo"><img src="images/bartek.png" alt="Bartek" /></span>
+            </div>
+            <div>
+              <p class="heroes__label">Pulled off by</p>
+              <p class="heroes__names">Bartek</p>
+            </div>
+          </div>
+        </div>
+        <div class="visual reveal" style="--d:2">
+          <div class="panel panel--heist">
+            <div class="panel__head">
+              <div class="seg" id="heistSeg">
+                <span class="seg__opt is-on" data-mode="0">Before</span>
+                <span class="seg__opt" data-mode="1">Sprint 125</span>
+                <i class="seg__thumb"></i>
+              </div>
+              <div class="counter">
+                <span class="counter__num" id="evCount">0</span>
+                <span class="counter__label">events recorded</span>
+              </div>
+            </div>
+            <div class="map" id="map">
+              <svg class="map__svg" viewBox="0 0 600 360" aria-hidden="true">
+                <defs>
+                  <linearGradient id="trailGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="#2de2e6" />
+                    <stop offset="0.5" stop-color="#ff3d9a" />
+                    <stop offset="1" stop-color="#ffb547" />
+                  </linearGradient>
+                  <pattern id="mapGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                    <path d="M30 0H0V30" fill="none" stroke="rgba(255,255,255,0.045)" stroke-width="1" />
+                  </pattern>
+                </defs>
+                <rect width="600" height="360" fill="url(#mapGrid)" />
+                <path class="map__water" d="M600 0 V360 H520 C 540 300, 500 250, 530 190 C 560 130, 520 70, 560 0Z" />
+                <path id="road" class="map__road" d="M50 300 C 120 300, 120 200, 190 190 S 260 90, 330 110 S 400 260, 460 230 S 520 90, 548 70" />
+                <path id="trail" class="map__trail" d="M50 300 C 120 300, 120 200, 190 190 S 260 90, 330 110 S 400 260, 460 230 S 520 90, 548 70" />
+                <path id="dark" class="map__dark" d="M50 300 C 120 300, 120 200, 190 190 S 260 90, 330 110 S 400 260, 460 230 S 520 90, 548 70" />
+              </svg>
+              <div class="wps" id="wps"></div>
+              <div class="blip" id="blip"><i></i></div>
+              <div class="banner" id="banner">
+                <p class="banner__t" id="bannerT">Mission passed</p>
+                <p class="banner__s" id="bannerS">Secured checkout recorded</p>
+              </div>
+            </div>
+            <div class="meter">
+              <div class="meter__row">
+                <span>Shopper journey recorded</span>
+                <span class="mono" id="covPct">0%</span>
+              </div>
+              <div class="meter__bar"><i id="covBar"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE · LIVE DEMO ============ -->
+    <section class="slide slide--live" data-title="Live demo" data-hook="live">
+      <div class="live">
+        <div class="live__scan" aria-hidden="true"></div>
+        <p class="kicker reveal" style="--d:0">Mission 01 <i></i> Live demo</p>
+        <div class="live__badge reveal" style="--d:1"><span class="rec"></span>Live</div>
+        <h2 class="live__title reveal" style="--d:2">The Checkout Job</h2>
+        <p class="live__sub reveal" style="--d:3">A real Shopify store · storefront → cart → <b>secured checkout</b> → replay</p>
+        <ol class="live__steps reveal" style="--d:4">
+          <li><b>01</b>Shop the store</li>
+          <li><b>02</b>Check out</li>
+          <li><b>03</b>Open the session in Glassbox</li>
+          <li><b>04</b>Replay the checkout</li>
+        </ol>
+        <div class="live__load reveal" style="--d:5">
+          <div class="live__bar"><i></i></div>
+          <span class="mono" id="liveMsg">Switching to live feed…</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE · SUPPORT TICKETS ============ -->
+    <section class="slide" data-title="Tickets" data-hook="bounty">
+      <div class="slide__bgnum" aria-hidden="true">02</div>
+      <div class="slide__grid">
+        <div class="copy">
+          <p class="kicker reveal" style="--d:0">Mission 02 <i></i> Support</p>
+          <h2 class="headline reveal" style="--d:1">Ten targets.<br /><span class="shine">Ten eliminated.</span></h2>
+          <p class="lede reveal" style="--d:2">
+            The crew went after the open support queue and took down
+            <b>10 support tickets</b> this sprint, and <b>cut our SLAs aggressively</b> on the way.
+            Every case tracked, resolved and closed. Wanted level: <b>zero</b>.
+          </p>
+          <div class="chips reveal" style="--d:3">
+            <span class="chip chip--hot"><i class="dot dot--pink"></i>10 tickets closed</span>
+            <span class="chip chip--hot"><i class="dot dot--orange"></i>SLAs aggressively cut</span>
+            <span class="chip"><i class="dot dot--sun"></i>Wanted level cleared</span>
+          </div>
+          <div class="heroes reveal" style="--d:4">
+            <div class="heroes__avatars">
+              <span class="avatar avatar--photo"><img src="images/adiram.png" alt="Adiram" /></span>
+              <span class="avatar avatar--b avatar--photo"><img src="images/naor.png" alt="Naor" /></span>
+              <span class="avatar avatar--b avatar--photo"><img src="images/michael.png" alt="Michael" /></span>
+            </div>
+            <div>
+              <p class="heroes__label">Taken down by</p>
+              <p class="heroes__names">Adiram, Naor &amp; Michael</p>
+            </div>
+          </div>
+        </div>
+        <div class="visual reveal" style="--d:2">
+          <div class="panel panel--bounty">
+            <div class="panel__head">
+              <div class="bounty__title"><span class="rec"></span>Hit list <span class="muted">· support queue</span></div>
+              <div class="counter">
+                <span class="counter__num"><span id="tkCount">0</span><span class="counter__of">/10</span></span>
+                <span class="counter__label">eliminated</span>
+              </div>
+            </div>
+            <div class="board" id="board">
+              <div class="banner" id="bountyBanner">
+                <p class="banner__t">Wanted level cleared</p>
+                <p class="banner__s">10 support tickets closed</p>
+              </div>
+            </div>
+            <div class="sla">
+              <div class="sla__row">
+                <span>Time to resolve vs. SLA</span>
+                <span class="sla__tag" id="slaTag">SLA</span>
+              </div>
+              <div class="sla__track">
+                <i class="sla__ghost"></i>
+                <i class="sla__fill" id="slaFill"></i>
+                <span class="sla__cut" id="slaCut" aria-hidden="true">✂</span>
+              </div>
+              <span class="sla__note">Illustrative</span>
+            </div>
+            <div class="wl">
+              <span>Wanted level</span>
+              <div class="wl__stars" id="wlStars"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE · FINALE ============ -->
+    <section class="slide slide--end" data-title="Q&amp;A" data-hook="finale">
+      <div class="finale" id="finale">
+        <div class="finale__sun" aria-hidden="true"></div>
+        <div class="shock" id="shock" aria-hidden="true"></div>
+        <canvas id="finaleCanvas" aria-label="Q and A"></canvas>
+        <div class="finale__top reveal" style="--d:0">
+          <p class="kicker">Mission complete <i></i> Sprint 125</p>
+        </div>
+        <div class="finale__bottom">
+          <p class="finale__thanks reveal" style="--d:6">Mission passed. <span class="shine">Questions?</span></p>
+          <ul class="credits reveal" style="--d:8">
+            <li><b>01</b>Shopify · full recording incl. secured checkout — Bartek</li>
+            <li><b>02</b>10 support tickets eliminated — Adiram, Naor &amp; Michael</li>
+          </ul>
+          <p class="finale__hint reveal" style="--d:10">Click to scatter · move to disturb</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="dock">
+    <button class="nav nav--prev" id="prev" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" /></svg>
+    </button>
+    <nav class="dots" id="dots" aria-label="Slides"></nav>
+    <button class="nav nav--next" id="next" aria-label="Next slide">
+      <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+    </button>
+    <span class="count mono"><b id="cur">01</b> / <span id="total">03</span></span>
+  </footer>
+  <div class="progress"><i id="progress"></i></div>
+  <div class="wipe" id="wipe" aria-hidden="true"></div>
+  <p class="keys">← → navigate · T tour · F fullscreen</p>
+
+  <!-- ============ NARRATED TOUR ============ -->
+  <div class="letterbox letterbox--top">
+    <div class="tour-bar">
+      <div class="tour-bar__l">
+        <span class="rec"></span>
+        <span class="tour-bar__k">Narrated by Claudine</span>
+        <span class="mono muted" id="tourStep"></span>
+      </div>
+      <div class="tour-bar__r">
+        <select id="tourVoice" aria-label="Claudine's voice"></select>
+        <button class="tour-btn" id="tourPause">Pause</button>
+        <button class="tour-btn" id="tourStop">Exit</button>
+      </div>
+    </div>
+  </div>
+  <div class="letterbox letterbox--bottom">
+    <p class="tour-cap" id="tourCap" aria-live="polite"></p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
